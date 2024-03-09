@@ -10,6 +10,7 @@ namespace AdivinaElBinarioServer.Models.DTOS
     {
         public string Nombre { get; set; } = "";
         public byte Respuesta { get; set; }
+        public bool Acierto { get; set; } = false;
       
     }
 }
