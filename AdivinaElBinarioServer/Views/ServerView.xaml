@@ -1,0 +1,22 @@
+﻿<Window x:Class="AdivinaElBinarioServer.Views.ServerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdivinaElBinarioServer.Views"
+        mc:Ignorable="d"
+        Title="ServerView" Height="450" Width="800">
+    <StackPanel>
+        <TextBlock TextAlignment="Right" Margin="0,0,20,0">La ip del server es: <Run>0.0.0.0</Run></TextBlock>
+        <TextBlock TextAlignment="Center" FontSize="36">Adivina el número Binario</TextBlock>
+        <Border Margin="20" BorderThickness="2" BorderBrush="Cyan">
+            <TextBlock TextAlignment="Center" FontSize="50">00001</TextBlock>
+        </Border>
+        <DockPanel >
+            <ListBox>
+                
+            </ListBox>
+        </DockPanel>
+        
+    </StackPanel>
+</Window>
