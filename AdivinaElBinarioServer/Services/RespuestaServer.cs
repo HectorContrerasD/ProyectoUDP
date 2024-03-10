@@ -24,10 +24,10 @@ namespace AdivinaElBinarioServer.Services
         public event EventHandler<UsuarioDTO>? ValidarRespuesta; 
         void Iniciar()
         {
-            UdpClient server = new(5001);
+            UdpClient server = new(5020);
             while (true)
             {
-                IPEndPoint remoto = new(IPAddress.Any, 5001);
+                IPEndPoint remoto = new(IPAddress.Any, 5020);
                 byte[] buffer = server.Receive(ref remoto);
                 UsuarioDTO? dto = JsonSerializer.Deserialize<UsuarioDTO>
                     (Encoding.UTF8.GetString(buffer));

@@ -4,19 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdivinaElBinarioServer.Views"
+        xmlns:vm="clr-namespace:AdivinaElBinarioServer.ViewModels"
         mc:Ignorable="d"
         Title="ServerView" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:ServerViewModel></vm:ServerViewModel>
+    </Window.DataContext>
     <StackPanel>
-        <TextBlock TextAlignment="Right" Margin="0,0,20,0">La ip del server es: <Run>0.0.0.0</Run></TextBlock>
+        <TextBlock TextAlignment="Right" Margin="0,0,20,0">La ip del server es: <Run Text="{Binding IP}"></Run></TextBlock>
         <TextBlock TextAlignment="Center" FontSize="36">Adivina el número Binario</TextBlock>
-        <Border Margin="20" BorderThickness="2" BorderBrush="Cyan">
-            <TextBlock TextAlignment="Center" FontSize="50">00001</TextBlock>
+        <Border x:Name="binario" Margin="20" BorderThickness="2" BorderBrush="Cyan">
+            <TextBlock  TextAlignment="Center" FontSize="50" Text="{Binding Binario}"></TextBlock>
         </Border>
-        <DockPanel >
-            <ListBox>
+       
+            <ListBox ItemsSource="{Binding UsuariosAcertados}">
                 
             </ListBox>
-        </DockPanel>
+        <Button Command="{Binding IniciarCommand}"> Iniciar</Button>
         
     </StackPanel>
 </Window>

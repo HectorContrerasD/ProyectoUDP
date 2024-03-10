@@ -1,16 +1,110 @@
-﻿using System;
+﻿using AdivinaElBinarioServer.Models.DTOS;
+using AdivinaElBinarioServer.Services;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace AdivinaElBinarioServer.ViewModels
 {
-    public class ServerViewModel
+    public class ServerViewModel : INotifyPropertyChanged
     {
         Random rnd = new Random();
+        public string IP { get; set; }
+        RespuestaServer server = new();
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        System.Windows.Threading.DispatcherTimer AdivinarTimer = new System.Windows.Threading.DispatcherTimer();
         public int NumeroR { get; set; }
-        
+        public List<UsuarioDTO> UsuariosLista { get; set; } = new();
+        public List<string> UsuariosAcertados { get; set; } = new();
+        public string Binario { get; set; } 
+        public ICommand IniciarCommand { get; set; }
+        public bool bandera { get; set; }
+        public event EventHandler OcultarBinario;
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public ServerViewModel()
+        {
+            var ips = Dns.GetHostAddresses(Dns.GetHostName());
+            IP = ips
+                .Where(x => x.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                .Select(x => x.ToString())
+                .FirstOrDefault() ?? "0.0.0.0";
+            server.ValidarRespuesta += Server_ValidarRespuesta;
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            IniciarCommand = new RelayCommand(Iniciar);
+            Actualizar();
+            //dispatcherTimer.Start();
+        }
+        private void Server_ValidarRespuesta(object? sender, Models.DTOS.UsuarioDTO e)
+        {
+            if (bandera)
+            {
+                var usuario = UsuariosLista.FirstOrDefault(x=> x.Nombre == e.Nombre);
+                if (usuario!=null)
+                {
+                    if (e.Respuesta == NumeroR)
+                    {
+                        usuario.Acierto = true;
+                        UsuariosAcertados.Add(e.Nombre);
+                        Actualizar();
+                    }
+                }
+                else
+                {
+                    UsuariosLista.Add(e);
+                    if (e.Respuesta == NumeroR)
+                    {
+                        e.Acierto = true;
+                        UsuariosAcertados.Add(e.Nombre);
+                        Actualizar();
+                    }
+                }
+            }
+        }
+
+        private void Iniciar()
+        {
+            GenerarNumero();
+            dispatcherTimer.Start();
+            Actualizar();
+        }
+
+        public void dispatcherTimer_Tick(object? sender, EventArgs e)
+        {
+            OcultarBinario.Invoke(sender, e);
+            AdivinarTimer.Tick += new EventHandler(TiempoAdivinar);
+            dispatcherTimer.Stop();
+            
+            AdivinarTimer.Interval = new TimeSpan(0, 1, 0);
+            AdivinarTimer.Start();
+            bandera = true;
+
+        }
+
+        private void TiempoAdivinar(object? sender, EventArgs e)
+        {
+            bandera = false;
+            AdivinarTimer.Start();
+        }
+
+        public void GenerarNumero()
+        {
+            NumeroR = rnd.Next(0, 256);
+            Binario = Convert.ToString(NumeroR, 2);
+           
+        }
+        public void Actualizar()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
 
     }
 }

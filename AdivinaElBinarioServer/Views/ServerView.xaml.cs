@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdivinaElBinarioServer.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace AdivinaElBinarioServer.Views
         public ServerView()
         {
             InitializeComponent();
+            var viemodel = DataContext as ServerViewModel;
+            viemodel.OcultarBinario += Viemodel_OcultarBinario;
+        }
+
+        private void Viemodel_OcultarBinario(object? sender, EventArgs e)
+        {
+           binario.Visibility = Visibility.Collapsed;
         }
     }
 }
