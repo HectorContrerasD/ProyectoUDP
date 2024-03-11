@@ -11,22 +11,27 @@
     <Window.DataContext>
         <vm:RespuestasViewModel></vm:RespuestasViewModel>
     </Window.DataContext>
-    <StackPanel>
-        <ContentControl>
+    <Grid Background="#34495E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Bienvenido/a a ¡Adivina el Binario!" FontSize="30" Margin="20" HorizontalAlignment="Center" Foreground="White"/>
+        <ContentControl Grid.Row="1">
             <ContentControl.Style>
                 <Style TargetType="ContentControl">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Conectado}" Value="True">
                             <Setter Property="Content">
                                 <Setter.Value>
-                                    <views:AdivinarView></views:AdivinarView>
+                                    <views:AdivinarView/>
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Conectado}" Value="False">
                             <Setter Property="Content">
                                 <Setter.Value>
-                                    <views:ConexionView></views:ConexionView>
+                                    <views:ConexionView/>
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
@@ -34,5 +39,6 @@
                 </Style>
             </ContentControl.Style>
         </ContentControl>
-    </StackPanel>
+    </Grid>
+
 </Window>

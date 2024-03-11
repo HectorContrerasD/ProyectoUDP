@@ -10,21 +10,17 @@
     <Window.DataContext>
         <vm:ServerViewModel></vm:ServerViewModel>
     </Window.DataContext>
-    <StackPanel>
-        <TextBlock TextAlignment="Right" Margin="0,0,20,0">La ip del server es: <Run Text="{Binding IP}"></Run></TextBlock>
-        <TextBlock TextAlignment="Center" FontSize="36">Adivina el número Binario</TextBlock>
+    <StackPanel Background="#34495E">
+        <TextBlock TextAlignment="Right" FontSize="20" Margin="0,0,20,0" Foreground="White">La ip del servidor es: <Run FontWeight="Black" Text="{Binding IP}"/></TextBlock>
+        <TextBlock TextAlignment="Center" FontSize="36" Foreground="White">Adivina el número Binario</TextBlock>
         <Border x:Name="binario" Margin="20" BorderThickness="2" BorderBrush="Cyan">
             <StackPanel>
-                <TextBlock  TextAlignment="Center" FontSize="50" Text="{Binding NumeroR}"></TextBlock>
-            <TextBlock  TextAlignment="Center" FontSize="50" Text="{Binding Binario}"></TextBlock>
+                <TextBlock TextAlignment="Center" FontSize="50" Text="{Binding NumeroR}" Foreground="White"/>
+                <TextBlock TextAlignment="Center" FontSize="50" Text="{Binding Binario}" Foreground="White"/>
             </StackPanel>
-            
         </Border>
-
-        <ListBox ItemsSource="{Binding UsuariosAcertados}">
-                
-            </ListBox>
-        <Button Command="{Binding IniciarCommand}"> Iniciar</Button>
-        
+        <ListBox Margin="10" Height="80" ItemsSource="{Binding UsuariosAcertados}"/>
+        <Button Command="{Binding IniciarCommand}" FontSize="20" Margin="10" FontWeight="Black" Padding="10" HorizontalAlignment="Center" Background="#3498DB" Foreground="White">Iniciar</Button>
     </StackPanel>
+
 </Window>

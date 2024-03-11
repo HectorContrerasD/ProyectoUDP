@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:AdivinaElBinarioCliente.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel HorizontalAlignment="Center">
-        <TextBlock Padding="10" FontSize="35">Escribe la dirección IP del servidor:</TextBlock>
-        <TextBox Margin="20" FontSize="25" Text="{Binding IP}" ></TextBox>
-        <Button Margin="0,5" FontSize="25   " Command="{Binding ConectarCommand}">Conectar</Button>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#2C3E50">
+        <TextBlock Padding="10" FontSize="35" Foreground="White">Escribe la dirección IP del servidor:</TextBlock>
+        <TextBox Margin="20" FontSize="25" Text="{Binding IP}" Background="#34495E" Foreground="White"></TextBox>
+        <Button Margin="20" FontSize="25" Command="{Binding ConectarCommand}" Background="#3498DB" Foreground="White">Conectar</Button>
     </StackPanel>
-    
+
+
 </UserControl>
