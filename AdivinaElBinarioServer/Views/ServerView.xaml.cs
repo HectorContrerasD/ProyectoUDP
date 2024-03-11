@@ -23,8 +23,14 @@ namespace AdivinaElBinarioServer.Views
         public ServerView()
         {
             InitializeComponent();
-            var viemodel = DataContext as ServerViewModel;
-            viemodel.OcultarBinario += Viemodel_OcultarBinario;
+            var viewmodel = DataContext as ServerViewModel;
+            viewmodel.OcultarBinario += Viemodel_OcultarBinario;
+            viewmodel.MostrarBinario += Viewmodel_MostrarBinario;
+        }
+
+        private void Viewmodel_MostrarBinario(object? sender, EventArgs e)
+        {
+            binario.Visibility = Visibility.Visible;
         }
 
         private void Viemodel_OcultarBinario(object? sender, EventArgs e)

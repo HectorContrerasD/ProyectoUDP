@@ -14,10 +14,14 @@
         <TextBlock TextAlignment="Right" Margin="0,0,20,0">La ip del server es: <Run Text="{Binding IP}"></Run></TextBlock>
         <TextBlock TextAlignment="Center" FontSize="36">Adivina el número Binario</TextBlock>
         <Border x:Name="binario" Margin="20" BorderThickness="2" BorderBrush="Cyan">
+            <StackPanel>
+                <TextBlock  TextAlignment="Center" FontSize="50" Text="{Binding NumeroR}"></TextBlock>
             <TextBlock  TextAlignment="Center" FontSize="50" Text="{Binding Binario}"></TextBlock>
+            </StackPanel>
+            
         </Border>
-       
-            <ListBox ItemsSource="{Binding UsuariosAcertados}">
+
+        <ListBox ItemsSource="{Binding UsuariosAcertados}">
                 
             </ListBox>
         <Button Command="{Binding IniciarCommand}"> Iniciar</Button>

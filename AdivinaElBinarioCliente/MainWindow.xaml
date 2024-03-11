@@ -20,7 +20,6 @@
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <views:AdivinarView></views:AdivinarView>
-                          
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>

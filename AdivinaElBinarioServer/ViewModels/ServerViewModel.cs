@@ -28,6 +28,7 @@ namespace AdivinaElBinarioServer.ViewModels
         public ICommand IniciarCommand { get; set; }
         public bool bandera { get; set; }
         public event EventHandler OcultarBinario;
+        public event EventHandler MostrarBinario; 
         public event PropertyChangedEventHandler? PropertyChanged;
         public ServerViewModel()
         {
@@ -67,6 +68,7 @@ namespace AdivinaElBinarioServer.ViewModels
                         Actualizar();
                     }
                 }
+
             }
         }
 
@@ -93,6 +95,7 @@ namespace AdivinaElBinarioServer.ViewModels
         {
             bandera = false;
             AdivinarTimer.Start();
+            Actualizar();
         }
 
         public void GenerarNumero()

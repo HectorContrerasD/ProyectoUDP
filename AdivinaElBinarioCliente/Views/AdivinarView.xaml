@@ -9,8 +9,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <TextBlock TextAlignment="Center" FontSize="25" Margin="25" >Ingrese el valor del número binario mostrado por el servidor:</TextBlock>
-        <TextBox  Margin="25" TextAlignment="Center" FontSize="25"> erpepe</TextBox>
+        <TextBox  Margin="25" TextAlignment="Center" Text="{Binding respuesta.Respuesta}" FontSize="25"> </TextBox>
         <TextBlock TextAlignment="Center" FontSize="25" Text="Mensajeaagria"></TextBlock>
-        <Button Margin="30" FontSize="25">Enviar respuesta</Button>
+        <Button Margin="30" Command="{Binding EnviarCommand}" FontSize="25">Enviar respuesta</Button>
     </StackPanel>
 </UserControl>
