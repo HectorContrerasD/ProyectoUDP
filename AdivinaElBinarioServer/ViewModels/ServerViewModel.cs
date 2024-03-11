@@ -60,7 +60,7 @@ namespace AdivinaElBinarioServer.ViewModels
                     }
                 }
                 else
-                {;
+                {
                     UsuariosLista.Add(e);
                     if (e.Respuesta == NumeroR)
                     {
