@@ -93,7 +93,7 @@ namespace AdivinaElBinarioServer.ViewModels
             AdivinarTimer.Tick += new EventHandler(TiempoAdivinar);
             dispatcherTimer.Stop();
             
-            AdivinarTimer.Interval = new TimeSpan(0, 1, 0);
+            AdivinarTimer.Interval = new TimeSpan(0, 0, 10);
             AdivinarTimer.Start();
             bandera = true;
 
@@ -102,12 +102,12 @@ namespace AdivinaElBinarioServer.ViewModels
         private void TiempoAdivinar(object? sender, EventArgs e)
         {
 
-          
+            Actualizar();
             bandera = false;
             MostrarBinario.Invoke(sender, e);
             AdivinarTimer.Start();
             Iniciar();  
-            Actualizar();
+            
         }
 
         public void GenerarNumero()
