@@ -49,16 +49,16 @@ namespace AdivinaElBinarioServer.ViewModels
             //dispatcherTimer.Start();
         }
 
-        public void Enviar()
-        {
-            server.Servidor = IP;
-            //if ()
-            //{
+        //public void Enviar()
+        //{
+        //    server.Servidor = IP;
+        //    //if ()
+        //    //{
 
-            //}
-            server.EnviarUsuario(usuario);
-            Actualizar();
-        }
+        //    //}
+        //    server.EnviarUsuario(usuario);
+        //    Actualizar();
+        //}
 
         private void Server_ValidarRespuesta(object? sender, Models.DTOS.UsuarioDTO e)
         {
@@ -121,7 +121,7 @@ namespace AdivinaElBinarioServer.ViewModels
             bandera = false;
             MostrarBinario.Invoke(sender, e);
             AdivinarTimer.Start();
-            Enviar();
+            //Enviar();
             Iniciar();  
             
         }
