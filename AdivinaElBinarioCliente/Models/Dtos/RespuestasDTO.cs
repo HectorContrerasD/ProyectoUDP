@@ -11,7 +11,5 @@ namespace AdivinaElBinarioCliente.Models.Dtos
         public string Nombre { get; set; } = "";
         public byte Respuesta { get; set; }
         public bool Acierto { get; set; } = false;
-
-
     }
 }
