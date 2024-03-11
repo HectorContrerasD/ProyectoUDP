@@ -21,27 +21,24 @@ namespace AdivinaElBinarioServer.Services
             };
             hilo.Start();
         }
-        public event EventHandler<UsuarioDTO>? ValidarRespuesta; 
+        public event EventHandler<UsuarioDTO>? ValidarRespuesta;
         void Iniciar()
         {
             UdpClient server = new(5020);
             while (true)
             {
-                IPEndPoint remoto = new(IPAddress.Any, 5020);
+                IPEndPoint remoto = new(IPAddress.Any,0 );
                 byte[] buffer = server.Receive(ref remoto);
                 UsuarioDTO? dto = JsonSerializer.Deserialize<UsuarioDTO>
                     (Encoding.UTF8.GetString(buffer));
                 if (dto != null)
                 {
-                    Application.Current.Dispatcher.Invoke(()=>
-                        {
-                            ValidarRespuesta?.Invoke(this, dto);
-                        });
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ValidarRespuesta?.Invoke(this, dto);
+                    });
                 }
             }
         }
     }
-    //public event EventHandler<UsuarioDTO>? ValidarRespuesta;
-    
-    
 }

@@ -54,9 +54,14 @@ namespace AdivinaElBinarioServer.ViewModels
                 {
                     if (e.Respuesta == NumeroR)
                     { 
-                        usuario.Acierto = true;
-                        UsuariosAcertados.Add(e.Nombre);
-                       
+                        if (UsuariosAcertados != null)
+                        {
+                            if (!UsuariosAcertados.Contains(e.Nombre))
+                            {
+                                usuario.Acierto = true;
+                                UsuariosAcertados.Add(e.Nombre);
+                            }
+                        }
                     }
                 }
                 else

@@ -10,7 +10,7 @@
     <StackPanel Background="#2C3E50">
         <TextBlock TextAlignment="Center" FontSize="25" Margin="25" Foreground="White">Ingrese el valor del número binario mostrado por el servidor:</TextBlock>
         <TextBox Margin="25" TextAlignment="Center" Text="{Binding respuesta.Respuesta}" FontSize="25" Background="#34495E" Foreground="White"></TextBox>
-        <TextBlock TextAlignment="Center" FontSize="25" Text="{Binding Mensaje}" Foreground="{Binding MensajeColor}"></TextBlock>
+        <TextBlock TextAlignment="Center" FontSize="25" Foreground="White" Text="{Binding Mensaje}" ></TextBlock>
         <Button Margin="30" Command="{Binding EnviarCommand}" FontSize="25" Background="#3498DB" FontWeight="Black" Foreground="White">Enviar respuesta</Button>
     </StackPanel>
 
