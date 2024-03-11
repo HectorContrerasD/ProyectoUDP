@@ -3,6 +3,7 @@ using AdivinaElBinarioServer.Services;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -22,8 +23,8 @@ namespace AdivinaElBinarioServer.ViewModels
         System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
         System.Windows.Threading.DispatcherTimer AdivinarTimer = new System.Windows.Threading.DispatcherTimer();
         public int NumeroR { get; set; }
-        public List<UsuarioDTO> UsuariosLista { get; set; } = new();
-        public List<string> UsuariosAcertados { get; set; } = new();
+        public ObservableCollection<UsuarioDTO> UsuariosLista { get; set; } = new();
+        public ObservableCollection<string> UsuariosAcertados { get; set; } = new();
         public string Binario { get; set; } 
         public ICommand IniciarCommand { get; set; }
         public bool bandera { get; set; }
@@ -52,20 +53,20 @@ namespace AdivinaElBinarioServer.ViewModels
                 if (usuario!=null)
                 {
                     if (e.Respuesta == NumeroR)
-                    {
+                    { 
                         usuario.Acierto = true;
                         UsuariosAcertados.Add(e.Nombre);
-                        Actualizar();
+                       
                     }
                 }
                 else
-                {
+                {;
                     UsuariosLista.Add(e);
                     if (e.Respuesta == NumeroR)
                     {
                         e.Acierto = true;
                         UsuariosAcertados.Add(e.Nombre);
-                        Actualizar();
+                       
                     }
                 }
 
@@ -76,6 +77,7 @@ namespace AdivinaElBinarioServer.ViewModels
         {
             GenerarNumero();
             dispatcherTimer.Start();
+            UsuariosAcertados.Clear();
             Actualizar();
         }
 
@@ -93,9 +95,12 @@ namespace AdivinaElBinarioServer.ViewModels
 
         private void TiempoAdivinar(object? sender, EventArgs e)
         {
-            bandera = false;
-            AdivinarTimer.Start();
+
             Actualizar();
+            bandera = false;
+            MostrarBinario.Invoke(sender, e);
+            AdivinarTimer.Start();
+            Iniciar();
         }
 
         public void GenerarNumero()

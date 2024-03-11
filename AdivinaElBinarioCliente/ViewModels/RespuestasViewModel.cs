@@ -38,7 +38,10 @@ namespace AdivinaElBinarioCliente.ViewModels
         private void Enviar()
         {
             ClienteUDP.Servidor = IP;
+
             ClienteUDP.EnviarRespuesta(respuesta);
+            Mensaje = "Respuesta enviada, espera a que se verifique tu respuesta";
+            Actualizar();
         }
         public void Actualizar()
         {
