@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdivinaElBinarioCliente"
         mc:Ignorable="d"
+        xmlns:vm ="clr-namespace:AdivinaElBinarioCliente.ViewModels"
+        xmlns:views ="clr-namespace:AdivinaElBinarioCliente.Views"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Window.DataContext>
+        <vm:RespuestasViewModel></vm:RespuestasViewModel>
+    </Window.DataContext>
+    <StackPanel>
+        <ContentControl>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Conectado}" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:AdivinarView></views:AdivinarView>
+                          
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Conectado}" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:ConexionView></views:ConexionView>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </StackPanel>
 </Window>

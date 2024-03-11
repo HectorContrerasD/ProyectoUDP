@@ -18,7 +18,7 @@ namespace AdivinaElBinarioCliente.Services
 
         public void EnviarRespuesta(RespuestasDTO dto)
         {
-            var ipendpoint = new IPEndPoint(IPAddress.Parse(Servidor), 5001);
+            var ipendpoint = new IPEndPoint(IPAddress.Parse(Servidor), 5020);
             var json = JsonSerializer.Serialize(dto);
             byte[] buffer = Encoding.UTF8.GetBytes(json);
             cliente.Send(buffer, buffer.Length, ipendpoint);
