@@ -26,7 +26,9 @@ namespace AdivinaElBinarioServer.ViewModels
         public ObservableCollection<UsuarioDTO> UsuariosLista { get; set; } = new();
         public ObservableCollection<string> UsuariosAcertados { get; set; } = new();
         public string Binario { get; set; } 
+        public UsuarioDTO usuario { get; set; } 
         public ICommand IniciarCommand { get; set; }
+       //public ICommand EnviarCommand { get; set; }
         public bool bandera { get; set; }
         public event EventHandler OcultarBinario;
         public event EventHandler MostrarBinario; 
@@ -42,9 +44,22 @@ namespace AdivinaElBinarioServer.ViewModels
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
             IniciarCommand = new RelayCommand(Iniciar);
+            //EnviarCommand = new RelayCommand(Enviar);
             Actualizar();
             //dispatcherTimer.Start();
         }
+
+        public void Enviar()
+        {
+            server.Servidor = IP;
+            //if ()
+            //{
+
+            //}
+            server.EnviarUsuario(usuario);
+            Actualizar();
+        }
+
         private void Server_ValidarRespuesta(object? sender, Models.DTOS.UsuarioDTO e)
         {
             if (bandera)
@@ -106,6 +121,7 @@ namespace AdivinaElBinarioServer.ViewModels
             bandera = false;
             MostrarBinario.Invoke(sender, e);
             AdivinarTimer.Start();
+            Enviar();
             Iniciar();  
             
         }

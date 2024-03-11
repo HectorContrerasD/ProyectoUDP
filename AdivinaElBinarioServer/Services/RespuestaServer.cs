@@ -21,6 +21,24 @@ namespace AdivinaElBinarioServer.Services
             };
             hilo.Start();
         }
+        public List<UdpClient> clientes { get; set; }
+        public string Servidor { get; set; } = "0.0.0.0";
+        public void EnviarUsuario(UsuarioDTO dto)
+        {
+            using (UdpClient cliente = new UdpClient())
+            {
+                var ipendpoint = new IPEndPoint(IPAddress.Parse(Servidor), 5021);
+              
+                var json = JsonSerializer.Serialize(dto);
+                byte[] buffer = Encoding.UTF8.GetBytes(json);
+                cliente.Send(buffer, buffer.Length, ipendpoint);
+                clientes.Add(cliente);
+                if (!cliente.Client.Connected)
+                {
+                    clientes.Remove(cliente);
+                }
+            }
+        }
         public event EventHandler<UsuarioDTO>? ValidarRespuesta;
         void Iniciar()
         {
@@ -40,5 +58,8 @@ namespace AdivinaElBinarioServer.Services
                 }
             }
         }
+        
+
+
     }
 }
