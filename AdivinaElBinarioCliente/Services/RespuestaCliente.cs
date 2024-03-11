@@ -19,7 +19,7 @@ namespace AdivinaElBinarioCliente.Services
         {
             using (UdpClient cliente = new UdpClient())
             {
-                var ipendpoint = new IPEndPoint(IPAddress.Parse(Servidor), 5021);
+                var ipendpoint = new IPEndPoint(IPAddress.Parse(Servidor), 5020);
                 dto.Nombre = Dns.GetHostName();
                 var json = JsonSerializer.Serialize(dto);
                 byte[] buffer = Encoding.UTF8.GetBytes(json);
@@ -27,39 +27,39 @@ namespace AdivinaElBinarioCliente.Services
             }
         }
 
-        public RespuestaCliente()
-        {
-            var hilo = new Thread(new ThreadStart(EscucharRespuesta))
-            {
-                IsBackground = true
-            };
-            hilo.Start();
-        }
+        //public RespuestaCliente()
+        //{
+        //    var hilo = new Thread(new ThreadStart(EscucharRespuesta))
+        //    {
+        //        IsBackground = true
+        //    };
+        //    hilo.Start();
+        //}
 
-        private void EscucharRespuesta()
-        {
-            using (UdpClient cliente = new UdpClient(5021))
-            {
-                while (true)
-                {
-                    IPEndPoint remoto = new IPEndPoint(IPAddress.Any, 5020);
-                    byte[] buffer = cliente.Receive(ref remoto);
-                    RespuestasDTO dto = JsonSerializer.Deserialize<RespuestasDTO>(Encoding.UTF8.GetString(buffer));
-                    if (dto != null)
-                    {
-                        OnRespuestaRecibida(dto);
-                    }
-                }
-            }
-        }
+        //    private void EscucharRespuesta()
+        //    {
+        //        using (UdpClient cliente = new UdpClient(5021))
+        //        {
+        //            while (true)
+        //            {
+        //                IPEndPoint remoto = new IPEndPoint(IPAddress.Any, 5021);
+        //                byte[] buffer = cliente.Receive(ref remoto);
+        //                RespuestasDTO dto = JsonSerializer.Deserialize<RespuestasDTO>(Encoding.UTF8.GetString(buffer));
+        //                if (dto != null)
+        //                {
+        //                    OnRespuestaRecibida(dto);
+        //                }
+        //            }
+        //        }
+        //    }
 
-        protected virtual void OnRespuestaRecibida(RespuestasDTO respuesta)
-        {
-            RespuestaRecibida?.Invoke(this, respuesta);
-        }
+        //    protected virtual void OnRespuestaRecibida(RespuestasDTO respuesta)
+        //    {
+        //        RespuestaRecibida?.Invoke(this, respuesta);
+        //    }
+        //}
+
+
+
     }
-
-
-
-
 }

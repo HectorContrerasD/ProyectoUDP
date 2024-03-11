@@ -27,7 +27,7 @@ namespace AdivinaElBinarioServer.Services
             UdpClient server = new(5020);
             while (true)
             {
-                IPEndPoint remoto = new(IPAddress.Any,0 );
+                IPEndPoint remoto = new(IPAddress.Any,5020 );
                 byte[] buffer = server.Receive(ref remoto);
                 UsuarioDTO? dto = JsonSerializer.Deserialize<UsuarioDTO>
                     (Encoding.UTF8.GetString(buffer));

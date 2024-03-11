@@ -27,21 +27,21 @@ namespace AdivinaElBinarioCliente.ViewModels
         {
             EnviarCommand = new RelayCommand(Enviar);
             ConectarCommand = new RelayCommand(Conectar);
-            ClienteUDP.RespuestaRecibida += ClienteUDP_RespuestaRecibida;
+            //ClienteUDP.RespuestaRecibida += ClienteUDP_RespuestaRecibida;
         }
 
-        private void ClienteUDP_RespuestaRecibida(object? sender, RespuestasDTO e)
-        {
-            if (e.Acierto)
-            {
-                Mensaje = "¡Felicidades!, acertaste el número binario.";
-            }
-            else
-            {
-                Mensaje = "Respuesta Incorrecta. Intenta de nuevo";
-            }
-            Actualizar();
-        }
+        //private void ClienteUDP_RespuestaRecibida(object? sender, RespuestasDTO e)
+        //{
+        //    if (e.Acierto)
+        //    {
+        //        Mensaje = "¡Felicidades!, acertaste el número binario.";
+        //    }
+        //    else
+        //    {
+        //        Mensaje = "Respuesta Incorrecta. Intenta de nuevo";
+        //    }
+        //    Actualizar();
+        //}
 
 
 
