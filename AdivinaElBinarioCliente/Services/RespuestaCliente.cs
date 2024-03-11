@@ -2,14 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AdivinaElBinarioCliente.Services
 {
     public  class RespuestaCliente
     {
-        private UDPClient cliente = new();
+        private UdpClient cliente = new();
 
         public string Servidor { get; set; } = "0.0.0.0";
 
