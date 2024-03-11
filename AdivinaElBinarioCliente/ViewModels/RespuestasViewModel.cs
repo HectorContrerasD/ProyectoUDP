@@ -44,7 +44,6 @@ namespace AdivinaElBinarioCliente.ViewModels
         //}
 
 
-
         private void Conectar()
         {
             Conectado= true;
